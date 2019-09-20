@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839function promiseAll(promises)&amp;#123;	return new Promise(function(resolve,reject)&amp;#123;                prmises = Array.from(promises)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写代码">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/手写promise/index.html">
+<meta property="og:site_name" content="丸蛋">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839function promiseAll(promises)&amp;#123;	return new Promise(function(resolve,reject)&amp;#123;                prmises = Array.from(promises)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-19T17:10:52.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手写代码">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839function promiseAll(promises)&amp;#123;	return new Promise(function(resolve,reject)&amp;#123;                prmises = Array.from(promises)">
+  <link rel="canonical" href="http://yoursite.com/2019/09/19/手写promise/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>手写代码 | 丸蛋</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丸蛋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/手写promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丸蛋">
+      <meta itemprop="description" content="一知半解最致命:)">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丸蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">手写代码
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 01:10:52" itemprop="dateModified" datetime="2019-09-20T01:10:52+08:00">2019-09-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAll</span>(<span class="params">promises</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        </span><br><span class="line">        prmises = <span class="built_in">Array</span>.from(promises)</span><br><span class="line">        <span class="keyword">if</span>(promises.length===<span class="number">0</span>)&#123;</span><br><span class="line">            resolve([])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> resolvedCounter= <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> promiseNum = promises.length</span><br><span class="line">        <span class="keyword">var</span> resolveValues = []</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;promiseNum;i++)&#123;</span><br><span class="line">            <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">                resolvedCounter++</span><br><span class="line">                resolveValues[i] = res</span><br><span class="line">                <span class="keyword">if</span>(resolvedCounter==promiseNum)&#123;</span><br><span class="line">                    resolve(resolveValues)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">               reject(err)                </span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseRace</span>(<span class="params">promises</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!isArray(promises))&#123;</span><br><span class="line">            <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'arguments must be an array'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> promiseNum = promises.length</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;promiseNum;i++)&#123;</span><br><span class="line">            <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> resolve(res)</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> reject(err)                </span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn,...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(args.length&lt;fn.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function">(<span class="params">...<span class="built_in">arguments</span></span>)=&gt;</span>curry(fn,...args,...arguments)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumFn</span>(<span class="params">a,b,c</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b+c</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> sum = curry(sumFn)</span><br><span class="line">sum(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)</span><br><span class="line">sum(<span class="number">1</span>,<span class="number">2</span>)(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jsonp</span></span><br><span class="line"><span class="comment">// 1.利用script标签的src属性来实现跨域 2.将前端方法作为参数传给后台，后台注入参数以后再返回 3.只支持get</span></span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">data</span>)</span>&#123;<span class="built_in">console</span>.log(data)&#125;</span><br><span class="line">jsonp(&#123;</span><br><span class="line">    url:<span class="string">''</span>,</span><br><span class="line">    params:&#123;&#125;,</span><br><span class="line">    callback: <span class="string">'show'</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扁平化数组</span></span><br><span class="line"><span class="comment">// 1.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flattenDeep</span>(<span class="params">arr,deepLength</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.flat(deepLength) <span class="comment">// es6方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flattenDeep</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">acc,val</span>)=&gt;</span><span class="built_in">Array</span>.isArray(val)?acc.concat(flattenDeep(val)):acc.concat(val),[])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 防抖 一段时间内只触发一次(最后一次)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func,wait</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">		clearTimeout(timer)</span><br><span class="line">		timer = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">			func.apply(<span class="keyword">this</span>,args)</span><br><span class="line">		&#125;,wait)	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 节流 一段时间内触发一次</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func,wait</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> flag = <span class="literal">true</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">...args</span>)=&gt;</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!flag) <span class="keyword">return</span></span><br><span class="line">		flag = <span class="literal">false</span></span><br><span class="line">		setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">			func.apply(<span class="keyword">this</span>,args)</span><br><span class="line">			flag = <span class="literal">true</span></span><br><span class="line">		&#125;,wait)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="深克隆"><a href="#深克隆" class="headerlink" title="深克隆"></a>深克隆</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(obj <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(obj)</span><br><span class="line">	<span class="keyword">if</span>(obj <span class="keyword">instanceof</span> <span class="built_in">Date</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(obj)</span><br><span class="line">	<span class="keyword">if</span>(obj === <span class="literal">null</span> ||<span class="keyword">typeof</span> obj !== <span class="string">'object'</span> )<span class="keyword">return</span> obj </span><br><span class="line">	<span class="keyword">let</span> t = <span class="keyword">new</span> obj.constructor()</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">		<span class="keyword">if</span>(obj.hasOwnProperty(key))&#123;</span><br><span class="line">			t[key] = deepClone(obj[key])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;    </span><br><span class="line">	<span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="eventbus"><a href="#eventbus" class="headerlink" title="eventbus"></a>eventbus</h2><h2 id="instanceOf"><a href="#instanceOf" class="headerlink" title="instanceOf"></a>instanceOf</h2><h2 id="new，object-create"><a href="#new，object-create" class="headerlink" title="new，object.create"></a>new，object.create</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function 士兵(ID)&#123;</span><br><span class="line">  var 临时对象 = &#123;&#125;</span><br><span class="line">  </span><br><span class="line">  临时对象.__proto = 士兵.原型</span><br><span class="line">  </span><br><span class="line">  临时对象.ID = ID</span><br><span class="line">  临时对象.生命值 = 42</span><br><span class="line">  </span><br><span class="line">  return 临时对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="call-apply-立即执行-bind（返回方法）"><a href="#call-apply-立即执行-bind（返回方法）" class="headerlink" title="call apply(立即执行) bind（返回方法）"></a>call apply(立即执行) bind（返回方法）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">将函数设为对象的属性</span><br><span class="line">执行&amp;删除这个函数</span><br><span class="line">指定<span class="keyword">this</span>到函数并传入给定参数执行函数</span><br><span class="line">如果不传入参数，默认指向为 <span class="built_in">window</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.call=<span class="function"><span class="keyword">function</span>(<span class="params">content=window,...args</span>)</span>&#123;</span><br><span class="line">    content.fn=<span class="keyword">this</span></span><br><span class="line">    res = content.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> content.fn</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.apply=<span class="function"><span class="keyword">function</span>(<span class="params">content=window,args</span>)</span>&#123;</span><br><span class="line">    content.fn=<span class="keyword">this</span></span><br><span class="line">    res = content.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> content.fn</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1.拷贝原函数 使用Object.create复制源函数的prototype给fToBind</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind=<span class="function"><span class="keyword">function</span>(<span class="params">content=window,...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fn=<span class="keyword">this</span></span><br><span class="line">    <span class="keyword">let</span> resFn = <span class="function"><span class="keyword">function</span>(<span class="params">...arguments</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> isNew = <span class="keyword">this</span> <span class="keyword">instanceof</span> resfn <span class="comment">//是否为new调用</span></span><br><span class="line">        content = isNew ? <span class="keyword">this</span> : <span class="built_in">Object</span>(content)</span><br><span class="line">        <span class="keyword">return</span> fn.call(content,...args,...arguments)</span><br><span class="line">    &#125;</span><br><span class="line">    resFn.prototype = <span class="built_in">Object</span>.create(fn.Prototype)</span><br><span class="line">    <span class="keyword">return</span> resFn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">1.原型链继承</span><br><span class="line">2.借用构造函数（.call()）</span><br><span class="line">3.组合继承</span><br><span class="line"></span><br><span class="line">4.原型式继承</span><br><span class="line">5.寄生式继承</span><br><span class="line">6.寄生组合式继承</span><br><span class="line"></span><br><span class="line">// 父类</span><br><span class="line">function supFather(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;]; // 复杂类型</span><br><span class="line">&#125;</span><br><span class="line">supFather.prototype.sayName = function (age) &#123;</span><br><span class="line">    console.log(this.name, &apos;age&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">// 子类</span><br><span class="line">function sub(name, age) &#123;</span><br><span class="line">    // 借用父类的方法：修改它的this指向,赋值父类的构造函数里面方法、属性到子类上</span><br><span class="line">    supFather.call(this, name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">// 重写子类的prototype，修正constructor指向</span><br><span class="line">function inheritPrototype(sonFn, fatherFn) &#123;</span><br><span class="line">    sonFn.prototype = Object.create(fatherFn.prototype); // 继承父类的属性以及方法</span><br><span class="line">    sonFn.prototype.constructor = sonFn; // 修正constructor指向到继承的那个函数上</span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(sub, supFather);</span><br><span class="line">sub.prototype.sayAge = function () &#123;</span><br><span class="line">    console.log(this.age, &apos;foo&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">// 实例化子类，可以在实例上找到属性、方法</span><br><span class="line">const instance1 = new sub(&quot;OBKoro1&quot;, 24);</span><br><span class="line">const instance2 = new sub(&quot;小明&quot;, 18);</span><br><span class="line">instance1.colors.push(&apos;black&apos;)</span><br><span class="line">console.log(instance1) // &#123;&quot;name&quot;:&quot;OBKoro1&quot;,&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;],&quot;age&quot;:24&#125;</span><br><span class="line">console.log(instance2) // &#123;&quot;name&quot;:&quot;小明&quot;,&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;],&quot;age&quot;:18&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse"></a>JSON.parse</h2><h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/19/缓存/" rel="next" title="缓存">
+                  <i class="fa fa-chevron-left"></i> 缓存
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/19/基本算法/" rel="prev" title="算法">
+                  算法 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#深克隆"><span class="nav-number">1.</span> <span class="nav-text">深克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eventbus"><span class="nav-number">2.</span> <span class="nav-text">eventbus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceOf"><span class="nav-number">3.</span> <span class="nav-text">instanceOf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new，object-create"><span class="nav-number">4.</span> <span class="nav-text">new，object.create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-apply-立即执行-bind（返回方法）"><span class="nav-number">5.</span> <span class="nav-text">call apply(立即执行) bind（返回方法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">6.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-parse"><span class="nav-number">7.</span> <span class="nav-text">JSON.parse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise"><span class="nav-number">8.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="丸蛋">
+  <p class="site-author-name" itemprop="name">丸蛋</p>
+  <div class="site-description" itemprop="description">一知半解最致命:)</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bazhuaa" title="GitHub &rarr; https://github.com/bazhuaa" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:jcc1227@163.com" title="E-Mail &rarr; mailto:jcc1227@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">丸蛋</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

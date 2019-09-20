@@ -58,14 +58,14 @@
   <meta name="description" content="一知半解最致命:)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="丸蛋">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="丸蛋">
 <meta property="og:description" content="一知半解最致命:)">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="丸蛋">
 <meta name="twitter:description" content="一知半解最致命:)">
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 <script id="page-configurations">
@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/手写promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="丸蛋">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/20/数据类型/" class="post-title-link" itemprop="url">数据类型</a>
+            <a href="/2019/09/19/手写promise/" class="post-title-link" itemprop="url">手写代码</a>
           
         </h1>
 
@@ -244,11 +244,223 @@
                 
               
 
-              <time title="创建时间：2019-09-20 10:02:33 / 修改时间：10:13:49" itemprop="dateCreated datePublished" datetime="2019-09-20T10:02:33+08:00">2019-09-20</time>
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 01:10:52" itemprop="dateModified" datetime="2019-09-20T01:10:52+08:00">2019-09-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAll</span>(<span class="params">promises</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        </span><br><span class="line">        prmises = <span class="built_in">Array</span>.from(promises)</span><br><span class="line">        <span class="keyword">if</span>(promises.length===<span class="number">0</span>)&#123;</span><br><span class="line">            resolve([])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> resolvedCounter= <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> promiseNum = promises.length</span><br><span class="line">        <span class="keyword">var</span> resolveValues = []</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;promiseNum;i++)&#123;</span><br><span class="line">            <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">                resolvedCounter++</span><br><span class="line">                resolveValues[i] = res</span><br><span class="line">                <span class="keyword">if</span>(resolvedCounter==promiseNum)&#123;</span><br><span class="line">                    resolve(resolveValues)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">               reject(err)                </span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseRace</span>(<span class="params">promises</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!isArray(promises))&#123;</span><br><span class="line">            <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'arguments must be an array'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> promiseNum = promises.length</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;promiseNum;i++)&#123;</span><br><span class="line">            <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> resolve(res)</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> reject(err)                </span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/19/手写promise/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/缓存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丸蛋">
+      <meta itemprop="description" content="一知半解最致命:)">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丸蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/19/缓存/" class="post-title-link" itemprop="url">缓存</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 10:32:08" itemprop="dateModified" datetime="2019-09-20T10:32:08+08:00">2019-09-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>浏览器存在一个缓存数据库，用于储存一些不经常变化的静态文件（图片、css、js等）。</p><h3 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h3><p>当缓存数据库中已有所请求的数据时。客户端直接从缓存数据库中获取数据。当缓存数据库中没有所请求的数据时，客户端的才会从服务端获取数据。</p><p><img src="https://user-gold-cdn.xitu.io/2017/11/29/16007be6f64ff7f7?imageslim" alt="img"></p><p>对于强制缓存，服务器响应的header中会用两个字段来表明——Expires和Cache-Control。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/19/缓存/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/js基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丸蛋">
+      <meta itemprop="description" content="一知半解最致命:)">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丸蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/19/js基础/" class="post-title-link" itemprop="url">基础</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 10:35:09" itemprop="dateModified" datetime="2019-09-20T10:35:09+08:00">2019-09-20</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -276,15 +488,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
-<li>6种基本数据类型，一种复杂数据类型object</li>
-<li>用<strong>typeof</strong>可以识别基本数据类型和function（null不可以，返回object，array返回object）</li>
-<li>instanceof 表示一个对象是否是另一个对象的实例</li>
-</ol><h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>在使用var声明变量但未对其初始化时，这个变量就是undefined。</p>
+          <h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>声明一个变量，并把函数对象赋值给他</p><h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><p>函数名称成为函数内部的一个变量</p><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>没有参数可以省略圆括号</p><h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>函数的执行依赖于变量作用域，这个作用域在函数定义时决定，而不是函数调用时。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">'global'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">'local'</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> scope;&#125;</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line">&#125;</span><br><span class="line">checkscope()() <span class="comment">// local</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">'global'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">'local'</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> scope;&#125;</span><br><span class="line">    <span class="keyword">return</span> f()</span><br><span class="line">&#125;</span><br><span class="line">checkscope() <span class="comment">// local</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/20/数据类型/#more" rel="contents">
+              <a class="btn" href="/2019/09/19/js基础/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -313,7 +521,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/面向对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/设计模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="丸蛋">
@@ -327,7 +535,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/20/面向对象/" class="post-title-link" itemprop="url">面向对象</a>
+            <a href="/2019/09/19/设计模式/" class="post-title-link" itemprop="url">设计模式</a>
           
         </h1>
 
@@ -342,11 +550,112 @@
                 
               
 
-              <time title="创建时间：2019-09-20 10:01:46 / 修改时间：10:13:35" itemprop="dateCreated datePublished" datetime="2019-09-20T10:01:46+08:00">2019-09-20</time>
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 01:09:57" itemprop="dateModified" datetime="2019-09-20T01:09:57+08:00">2019-09-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丸蛋">
+      <meta itemprop="description" content="一知半解最致命:)">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丸蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/19/symbol/" class="post-title-link" itemprop="url">Symbol</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-20 10:16:46" itemprop="dateModified" datetime="2019-09-20T10:16:46+08:00">2019-09-20</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -374,20 +683,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h2><ol>
-<li>configurable:<ol>
-<li>能否删除属性从而重新定义属性；能否修改属性的特性；能否把属性修改为访问器属性</li>
-<li>设置为false之后，就不能再配置了</li>
-</ol>
-</li>
-<li>enumerable:for…in循环</li>
-<li>writable:能否修改属性值</li>
-<li>value</li>
-</ol><p>在调用<code>Object.defineProperty()</code>方法创建新属性时，以上属性默认都为false，其他情况下为true。</p>
+          <p>Symbol代表一个独一无二的值，对象的属性可以是字符串，也可以是symbol，可以保证属性名不起冲突。</p><p>Symbol的参数只能是字符串，如果为对象，将会调用toString方法，只表示对当前symbol值的描述（可以用symbol.prototype.description取到），相同参数的返回值也是不同的.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/20/面向对象/#more" rel="contents">
+              <a class="btn" href="/2019/09/19/symbol/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -416,7 +716,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/基础进阶/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/跨域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="丸蛋">
@@ -430,7 +730,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/19/基础进阶/" class="post-title-link" itemprop="url">js基础进阶</a>
+            <a href="/2019/09/19/跨域/" class="post-title-link" itemprop="url">跨域</a>
           
         </h1>
 
@@ -456,7 +756,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 10:36:46" itemprop="dateModified" datetime="2019-09-20T10:36:46+08:00">2019-09-20</time>
+                <time title="修改时间：2019-09-20 10:37:07" itemprop="dateModified" datetime="2019-09-20T10:37:07+08:00">2019-09-20</time>
               </span>
             
           
@@ -466,7 +766,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js基础/" itemprop="url" rel="index"><span itemprop="name">js基础</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
 
                 
                 
@@ -485,749 +785,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/san-3001-bian-liang-dui-xiang.html" target="_blank" rel="noopener">https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/san-3001-bian-liang-dui-xiang.html</a></p><h2 id="内存空间"><a href="#内存空间" class="headerlink" title="内存空间"></a>内存空间</h2><ol>
-<li><p>堆（heap）栈（stack）与队列（queue）</p>
-<ol>
-<li>栈：先进后出，后进先出（执行上下文）</li>
-<li>堆：key-value，顺序不影响</li>
-<li>队列：先进先出（事件循环event loop）</li>
-<li>变量对象：执行上下文生成后，</li>
-</ol>
-</li>
-<li><p>基本数据类型：null，undefined，string，number，boolean，symbol</p>
-<p>储存在栈内存中</p>
-</li>
-<li><p>引用数据类型与堆内存：地址引用（指针）</p>
-</li>
-<li><p>内存空间管理：通过标记清除的算法，局部作用域中，当函数执行完毕，局部变量没有存在的必要了，但是全局变量难判断，所以尽量避免使用。</p>
-</li>
-</ol>
+          <p>[<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html]" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html]</a></p><h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><p>同源：协议（protocol）、端口（port）、主机（host，域名）相同，这两个页面就属于同一个源（origin）。</p><h1 id="postMessage"><a href="#postMessage" class="headerlink" title="postMessage"></a>postMessage</h1><p>用来想其他window对象发送消息</p><h1 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h1><p>手写</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jsonp</span></span><br><span class="line"><span class="comment">// 1.利用script标签的src属性来实现跨域 2.将前端方法作为参数传给后台，后台注入参数以后再返回 3.只支持get</span></span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">data</span>)</span>&#123;<span class="built_in">console</span>.log(data)&#125;</span><br><span class="line">jsonp(&#123;</span><br><span class="line">    url:<span class="string">''</span>,</span><br><span class="line">    params:&#123;&#125;,</span><br><span class="line">    callback: <span class="string">'show'</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/基础进阶/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/书/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/书/" class="post-title-link" itemprop="url">书</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 09:14:47" itemprop="dateModified" datetime="2019-09-20T09:14:47+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>小红书，JavaScript高级程序设计；<br>小绿书，es标准入门；<br>小黄书，你不知道的JavaScript（上中）；<br>小蓝书，JavaScript设计模式与开发实战；<br>小白书，图解http；<br>小忍者，JavaScript忍者秘籍；<br>小橘书，大话数据结构等等。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/xss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/xss/" class="post-title-link" itemprop="url">xss攻击</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 01:12:34" itemprop="dateModified" datetime="2019-09-20T01:12:34+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/安全/" itemprop="url" rel="index"><span itemprop="name">安全</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>通过插入恶意脚本，实现对用户游览器的控制。</p><p>xss攻击主要用户攻击者盗取用户的cookie，由于sessionId是存储在cookie中的，当攻击者获取了用户的cookie，则攻击者可以在session的生命周期内，达到获取被攻击用户的用户权限。</p><h3 id="非持久型攻击"><a href="#非持久型攻击" class="headerlink" title="非持久型攻击"></a><strong>非持久型攻击</strong></h3><p>一次性的，仅对当前访问产生影响</p><p>被植入的攻击脚本被用户浏览器执行</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/xss/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/事件循环/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/事件循环/" class="post-title-link" itemprop="url">事件循环</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 01:10:30" itemprop="dateModified" datetime="2019-09-20T01:10:30+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>JS 执行是单线程的，它是基于事件循环的。事件循环大致分为以下几个步骤：</p><p>（1）所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</p><p>（2）主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</p><p>（3）一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/事件循环/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/合集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/合集/" class="post-title-link" itemprop="url">合集</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 01:07:19" itemprop="dateModified" datetime="2019-09-20T01:07:19+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>介绍闭包是什么</p>
-</li>
-<li><p>call/apply/bind区别</p>
-</li>
-<li><p>js有哪些数据类型</p>
-<p><a href="https://juejin.im/post/5cec1bcff265da1b8f1aa08f" target="_blank" rel="noopener">https://juejin.im/post/5cec1bcff265da1b8f1aa08f</a></p>
-</li>
-<li><p>class原理</p>
-</li>
-<li><p>有哪几种继承</p>
-<p><a href="https://juejin.im/post/5cee3c69e51d45108b2cae03" target="_blank" rel="noopener">https://juejin.im/post/5cee3c69e51d45108b2cae03</a></p>
-</li>
-<li><p>数组去重 的几种方法</p>
-</li>
-<li><p>数组和对象的方法及其区别(map/every/filter/forEach/some)</p>
-</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/合集/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/垃圾回收/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/垃圾回收/" class="post-title-link" itemprop="url">垃圾回收（todo）</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 01:09:47" itemprop="dateModified" datetime="2019-09-20T01:09:47+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>process.memoryUsage返回一个对象，包含了 Node 进程的内存占用信息。</p>
-<h4 id="意外的全局变量"><a href="#意外的全局变量" class="headerlink" title="意外的全局变量"></a>意外的全局变量</h4><h4 id="被遗忘的定时器和回调函数"><a href="#被遗忘的定时器和回调函数" class="headerlink" title="被遗忘的定时器和回调函数"></a>被遗忘的定时器和回调函数</h4><h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/promise/" class="post-title-link" itemprop="url">promise</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 00:52:59" itemprop="dateModified" datetime="2019-09-20T00:52:59+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>setTimeout 第三个参数是传入方法的参数</p><h3 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h3><ol>
-<li>pending</li>
-<li>fullfilled</li>
-<li>rejected</li>
-</ol><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
-<li>无法取消</li>
-<li>如果不设置回调函数，内部抛出的错误不会反应到外部（Promise 会吃掉错误）<br>.then/.catch/.finally</li>
-</ol><p>.all/.race/.resolve/.reject/.try</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/promise/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/基本算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="丸蛋">
-      <meta itemprop="description" content="一知半解最致命:)">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丸蛋">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/19/基本算法/" class="post-title-link" itemprop="url">算法</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-19 23:07:41" itemprop="dateCreated datePublished" datetime="2019-09-19T23:07:41+08:00">2019-09-19</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 01:08:05" itemprop="dateModified" datetime="2019-09-20T01:08:05+08:00">2019-09-20</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="经典排序算法"><a href="#经典排序算法" class="headerlink" title="经典排序算法"></a>经典排序算法</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>每次循环将两两比较大小交换，一次循环完毕，最大的将会在最后，循环n次</p><p>时间复杂度O(n^2)</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以使用ES6解构赋值 交换位置 但是速度会略变慢</span></span><br><span class="line"><span class="comment">// 冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubble</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=arr.length<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">        [arr[j],arr[j+<span class="number">1</span>]]=[arr[j+<span class="number">1</span>],arr[j]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/19/基本算法/#more" rel="contents">
+              <a class="btn" href="/2019/09/19/跨域/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1255,7 +817,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 

@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Symbol代表一个独一无二的值，对象的属性可以是字符串，也可以是symbol，可以保证属性名不起冲突。Symbol的参数只能是字符串，如果为对象，将会调用toString方法，只表示对当前symbol值的描述（可以用symbol.prototype.description取到），相同参数的返回值也是不同的.">
+  <meta name="description" content="介绍闭包是什么  call/apply/bind区别  js有哪些数据类型 https://juejin.im/post/5cec1bcff265da1b8f1aa08f  class原理  有哪几种继承 https://juejin.im/post/5cee3c69e51d45108b2cae03  数组去重 的几种方法  数组和对象的方法及其区别(map/every/filter/forEa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Symbol">
-<meta property="og:url" content="http://yoursite.com/2019/09/19/symbol/index.html">
+<meta property="og:title" content="合集">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/合集/index.html">
 <meta property="og:site_name" content="丸蛋">
-<meta property="og:description" content="Symbol代表一个独一无二的值，对象的属性可以是字符串，也可以是symbol，可以保证属性名不起冲突。Symbol的参数只能是字符串，如果为对象，将会调用toString方法，只表示对当前symbol值的描述（可以用symbol.prototype.description取到），相同参数的返回值也是不同的.">
+<meta property="og:description" content="介绍闭包是什么  call/apply/bind区别  js有哪些数据类型 https://juejin.im/post/5cec1bcff265da1b8f1aa08f  class原理  有哪几种继承 https://juejin.im/post/5cee3c69e51d45108b2cae03  数组去重 的几种方法  数组和对象的方法及其区别(map/every/filter/forEa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-20T02:16:46.631Z">
+<meta property="og:updated_time" content="2019-09-19T17:07:19.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Symbol">
-<meta name="twitter:description" content="Symbol代表一个独一无二的值，对象的属性可以是字符串，也可以是symbol，可以保证属性名不起冲突。Symbol的参数只能是字符串，如果为对象，将会调用toString方法，只表示对当前symbol值的描述（可以用symbol.prototype.description取到），相同参数的返回值也是不同的.">
-  <link rel="canonical" href="http://yoursite.com/2019/09/19/symbol/">
+<meta name="twitter:title" content="合集">
+<meta name="twitter:description" content="介绍闭包是什么  call/apply/bind区别  js有哪些数据类型 https://juejin.im/post/5cec1bcff265da1b8f1aa08f  class原理  有哪几种继承 https://juejin.im/post/5cee3c69e51d45108b2cae03  数组去重 的几种方法  数组和对象的方法及其区别(map/every/filter/forEa">
+  <link rel="canonical" href="http://yoursite.com/2019/09/19/合集/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Symbol | 丸蛋</title>
+  <title>合集 | 丸蛋</title>
   
 
 
@@ -217,7 +217,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/symbol/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/合集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="丸蛋">
@@ -229,7 +229,7 @@
       <meta itemprop="name" content="丸蛋">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Symbol
+        <h1 class="post-title" itemprop="name headline">合集
 
           
         </h1>
@@ -256,7 +256,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-20 10:16:46" itemprop="dateModified" datetime="2019-09-20T10:16:46+08:00">2019-09-20</time>
+                <time title="修改时间：2019-09-20 01:07:19" itemprop="dateModified" datetime="2019-09-20T01:07:19+08:00">2019-09-20</time>
               </span>
             
           
@@ -266,7 +266,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js基础/" itemprop="url" rel="index"><span itemprop="name">js基础</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
 
                 
                 
@@ -285,32 +285,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Symbol代表一个独一无二的值，对象的属性可以是字符串，也可以是symbol，可以保证属性名不起冲突。</p><p>Symbol的参数只能是字符串，如果为对象，将会调用toString方法，只表示对当前symbol值的描述（可以用symbol.prototype.description取到），相同参数的返回值也是不同的.</p><a id="more"></a>
-
-<h3 id="实例：消除魔术字符串"><a href="#实例：消除魔术字符串" class="headerlink" title="实例：消除魔术字符串"></a>实例：消除魔术字符串</h3><p>symbol可以定义一组常量，保证这组常量的值都是不同的</p>
-<p>消除字符串与代码的<strong>强耦合</strong></p>
-<h3 id="属性遍历"><a href="#属性遍历" class="headerlink" title="属性遍历"></a>属性遍历</h3><p>不会出现在<code>for in</code>、<code>for of</code>、<code>Object.keys</code>、<code>Object.getOwnPropertyNames</code>、<code>JSON.stringify</code>中,但也不是私有属性，有一个<code>Object.getOwnPropertySymbols</code>方法可以获取到。还有<code>Reflect.ownKeys</code>可以返回所有类型的键名</p>
-<h3 id="实例：为对象定义一些非私有的内部方法"><a href="#实例：为对象定义一些非私有的内部方法" class="headerlink" title="实例：为对象定义一些非私有的内部方法"></a>实例：为对象定义一些非私有的内部方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> size = <span class="built_in">Symbol</span>(<span class="string">'size'</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Collection</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>[size] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  add(item) &#123;</span><br><span class="line">    <span class="keyword">this</span>[<span class="keyword">this</span>[size]] = item;</span><br><span class="line">    <span class="keyword">this</span>[size]++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> sizeOf(instance) &#123;</span><br><span class="line">    <span class="keyword">return</span> instance[size];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Symbol-for、Symbol-keyFor"><a href="#Symbol-for、Symbol-keyFor" class="headerlink" title="Symbol.for、Symbol.keyFor"></a>Symbol.for、Symbol.keyFor</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Symbol</span>.for(<span class="string">"bar"</span>) === <span class="built_in">Symbol</span>.for(<span class="string">"bar"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 登记该Symbol的key,可以用Symbol.keyFor返回该symbol的key值</span></span><br><span class="line"><span class="built_in">Symbol</span>(<span class="string">"bar"</span>) === <span class="built_in">Symbol</span>(<span class="string">"bar"</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="11个内置Symbol值"><a href="#11个内置Symbol值" class="headerlink" title="11个内置Symbol值"></a>11个内置Symbol值</h3><ol>
-<li><p>Symbol.hasInstance</p>
+        <ol>
+<li><p>介绍闭包是什么</p>
 </li>
-<li><p>Symbol.isConcatSpreadable</p>
-<p>判断在使用.concat时是否可以展开</p>
+<li><p>call/apply/bind区别</p>
 </li>
-<li><p>…</p>
+<li><p>js有哪些数据类型</p>
+<p><a href="https://juejin.im/post/5cec1bcff265da1b8f1aa08f" target="_blank" rel="noopener">https://juejin.im/post/5cec1bcff265da1b8f1aa08f</a></p>
 </li>
-<li><p>Symbol.toPrimitive</p>
-<p>该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。</p>
-<ul>
-<li>Number：该场合需要转成数值</li>
-<li>String：该场合需要转成字符串</li>
-<li>Default：该场合可以转成数值，也可以转成字符串</li>
-</ul>
+<li><p>class原理</p>
+</li>
+<li><p>有哪几种继承</p>
+<p><a href="https://juejin.im/post/5cee3c69e51d45108b2cae03" target="_blank" rel="noopener">https://juejin.im/post/5cee3c69e51d45108b2cae03</a></p>
+</li>
+<li><p>数组去重 的几种方法</p>
+</li>
+<li><p>数组和对象的方法及其区别(map/every/filter/forEach/some)</p>
+</li>
+</ol><a id="more"></a>
+<ol start="8">
+<li><p>介绍const/let</p>
+</li>
+<li><p>es6箭头函数</p>
+</li>
+<li><p>介绍promise</p>
+<p><a href="https://juejin.im/post/5ce40e5ee51d4556be5b39b7" target="_blank" rel="noopener">https://juejin.im/post/5ce40e5ee51d4556be5b39b7</a></p>
+</li>
+<li><p>介绍async/await</p>
+</li>
+<li><p>介绍Symbol数据类型</p>
+<blockquote>
+<p>每个从Symbol()返回的symbol值都是唯一的。一个symbol值能作为对象属性的标识符；这是该数据类型仅有的目的。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name:<span class="string">'ConardLi'</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>(<span class="string">'name2'</span>)]:<span class="string">'code秘密花园'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj); <span class="comment">// ["name"]</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj); <span class="comment">// ["name"]</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(i); <span class="comment">// name</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(obj) <span class="comment">// [Symbol(name)]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vue源码核心</p>
+</li>
+<li><p>vue生命周期</p>
+</li>
+<li><p>vue组件间通信</p>
+</li>
+<li><p>vue自定义指令</p>
+</li>
+<li><p>vuex是什么以及应用场景</p>
+</li>
+<li><p>mutation和action的区别</p>
+</li>
+<li><p>vue-router如何结合权限模块来做动态路由</p>
+</li>
+<li><p>vue-router实现原理</p>
+</li>
+<li><p>history/hash的区别</p>
+</li>
+<li><p>如何实现懒加载</p>
+</li>
+<li><p>vue/react diff算法比较</p>
+</li>
+<li><p>服务端渲染</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000018577041" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018577041</a></p>
+</li>
+<li><p>什么是函数式编程</p>
+</li>
+<li><p>react生命周期</p>
 </li>
 </ol>
+<h2 id="知识点汇总"><a href="#知识点汇总" class="headerlink" title="知识点汇总"></a>知识点汇总</h2><p><a href="https://juejin.im/post/5d06fbc2e51d45106b15ff1f" target="_blank" rel="noopener">https://juejin.im/post/5d06fbc2e51d45106b15ff1f</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/66740681" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/66740681</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/57200821" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/57200821</a></p>
+<h2 id="vue汇总"><a href="#vue汇总" class="headerlink" title="vue汇总"></a>vue汇总</h2><p><a href="https://juejin.im/post/5cc913b26fb9a031f525d36e" target="_blank" rel="noopener">https://juejin.im/post/5cc913b26fb9a031f525d36e</a></p>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p><a href="https://juejin.im/post/5d032b77e51d45777a126183" target="_blank" rel="noopener">可能是全网最全的http面试答案</a></p>
+<h2 id="浏览器渲染过程及优化"><a href="#浏览器渲染过程及优化" class="headerlink" title="浏览器渲染过程及优化"></a>浏览器渲染过程及优化</h2><p><a href="https://juejin.im/post/5d136700f265da1b7c6128db" target="_blank" rel="noopener">10分钟看懂浏览器的渲染过程及优化</a></p>
+<p><a href="https://juejin.im/post/5b06aa4e51882538bd552370" target="_blank" rel="noopener">https://juejin.im/post/5b06aa4e51882538bd552370</a></p>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p><a href="https://juejin.im/post/5cdd493f51882574ca413f78" target="_blank" rel="noopener">BFC</a></p>
+<h2 id="移动端适配"><a href="#移动端适配" class="headerlink" title="移动端适配"></a>移动端适配</h2><p><a href="https://juejin.im/post/5cddf289f265da038f77696c" target="_blank" rel="noopener">https://juejin.im/post/5cddf289f265da038f77696c</a></p>
+<h2 id="JS防抖节流"><a href="#JS防抖节流" class="headerlink" title="JS防抖节流"></a>JS防抖节流</h2><p><a href="https://juejin.im/post/5cce5380f265da03826129bf" target="_blank" rel="noopener">https://juejin.im/post/5cce5380f265da03826129bf</a></p>
+<h2 id="vue开发环境"><a href="#vue开发环境" class="headerlink" title="vue开发环境"></a>vue开发环境</h2><p><a href="https://juejin.im/post/5cc55c336fb9a032086dd701" target="_blank" rel="noopener">https://juejin.im/post/5cc55c336fb9a032086dd701</a></p>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><p><a href="https://juejin.im/post/5b04ccc5f265da0b967293fa" target="_blank" rel="noopener">https://juejin.im/post/5b04ccc5f265da0b967293fa</a></p>
+<h2 id="手写代码"><a href="#手写代码" class="headerlink" title="手写代码"></a>手写代码</h2><p><a href="https://juejin.im/post/5c9c3989e51d454e3a3902b6" target="_blank" rel="noopener">JavaScript手写代码无敌秘籍</a></p>
+<p><a href="https://juejin.im/post/5c9edb066fb9a05e267026dc" target="_blank" rel="noopener">https://juejin.im/post/5c9edb066fb9a05e267026dc</a></p>
+<h2 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h2><p><a href="https://juejin.im/post/5ac61da66fb9a028c71eae1b" target="_blank" rel="noopener">你了解前端路由吗</a></p>
+<h2 id="学习工具"><a href="#学习工具" class="headerlink" title="学习工具"></a>学习工具</h2><p><a href="https://juejin.im/post/5d003f51e51d454fbe24a661" target="_blank" rel="noopener">相关网站</a></p>
 
     </div>
 
@@ -327,8 +382,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/19/跨域/" rel="next" title="跨域">
-                  <i class="fa fa-chevron-left"></i> 跨域
+                <a href="/2019/09/19/垃圾回收/" rel="next" title="垃圾回收（todo）">
+                  <i class="fa fa-chevron-left"></i> 垃圾回收（todo）
                 </a>
               
             </div>
@@ -337,8 +392,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/09/19/设计模式/" rel="prev" title="设计模式">
-                  设计模式 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/09/19/事件循环/" rel="prev" title="事件循环">
+                  事件循环 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -388,7 +443,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例：消除魔术字符串"><span class="nav-number">1.</span> <span class="nav-text">实例：消除魔术字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性遍历"><span class="nav-number">2.</span> <span class="nav-text">属性遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例：为对象定义一些非私有的内部方法"><span class="nav-number">3.</span> <span class="nav-text">实例：为对象定义一些非私有的内部方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-for、Symbol-keyFor"><span class="nav-number">4.</span> <span class="nav-text">Symbol.for、Symbol.keyFor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11个内置Symbol值"><span class="nav-number">5.</span> <span class="nav-text">11个内置Symbol值</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点汇总"><span class="nav-number">1.</span> <span class="nav-text">知识点汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue汇总"><span class="nav-number">2.</span> <span class="nav-text">vue汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">3.</span> <span class="nav-text">http</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染过程及优化"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染过程及优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">5.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端适配"><span class="nav-number">6.</span> <span class="nav-text">移动端适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS防抖节流"><span class="nav-number">7.</span> <span class="nav-text">JS防抖节流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue开发环境"><span class="nav-number">8.</span> <span class="nav-text">vue开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6"><span class="nav-number">9.</span> <span class="nav-text">ES6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手写代码"><span class="nav-number">10.</span> <span class="nav-text">手写代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端路由"><span class="nav-number">11.</span> <span class="nav-text">前端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习工具"><span class="nav-number">12.</span> <span class="nav-text">学习工具</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
